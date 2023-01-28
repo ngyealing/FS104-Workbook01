@@ -1,0 +1,40 @@
+{% extends "admin.html" %}
+{% block admin_content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h2>Menu Items</h2>
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show my-2" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Categroy</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in shelf %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{menu.product_name}}</td>
+                    <td>{{menu.category}}</td>
+                    <td>${{menu.price}}</td>
+                    <td><img src="{{ menu.product_image.url }}" width="100px"></td>
+                    <td><a href="edit-menu/{{menu.id}}">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                            href="delete-menu/{{menu.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock%}

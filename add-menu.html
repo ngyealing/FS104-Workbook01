@@ -1,0 +1,38 @@
+{% extends "admin.html" %}
+{% block admin_content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h2>Menu Items</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form action="{% url 'add-menu-store' %}" method = 'POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="product_name" class="form-label">Product Name</label>
+                    <input type="text" name="product_name" class="form-control" id="product_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="price" class="form-control" id="price" required>
+                    <span style="font-size: 10px;">price in $ (doller)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="product_image" class="form-label">Product Image</label>
+                    <input type="file" name="product_image" class="form-control" id="product_image" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Select Category</label>
+                    <select class="form-select" name="category">
+                        <option value="Starters">Starters</option>
+                        <option value="Mains">Mains</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Desserts">Desserts</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+{% endblock%}

@@ -1,0 +1,37 @@
+{% extends "admin.html" %}
+{% block admin_content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h2>Menu Items</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form action="{% url 'edit-menu-update' %}" method = 'POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="product_name" class="form-label">Product Name</label>
+                    <input type="text" name="product_name" class="form-control" value="{{menu_data.product_name}}" id="product_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="price" class="form-control" id="price" required  value="{{menu_data.price}}">
+                    <span style="font-size: 10px;">price in $ (doller)</span>
+                </div>
+                <div class="mb-3">
+                    <label for="product_image" class="form-label">Product Image</label>
+                    <input type="file" name="product_image" class="form-control" id="product_image" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Select Category</label>
+                    <select class="form-select" name="category">
+                        <option value="Starters" {% if menu_data.category  == 'starters' %} selected {% endif %}>Starters</option>
+                        <option value="Mains" {% if menu_data.category  == 'mains' %} selected {% endif %}>Mains</option>
+                        <option value="Beverages" {% if menu_data.category  == 'beverages' %} selected {% endif %}>Beverages</option>
+                        <option value="Desserts" {% if menu_data.category  == 'desserts' %} selected {% endif %}>Desserts</option>
+                    </select>
+                </div>
+                <input type="hidden" name="id" value="{{menu_data.id}}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock%}

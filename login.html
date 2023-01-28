@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="static/css/login.css">
+</head>
+
+<body style="background-color: rgb(56, 56, 56);">
+    <div class="logo" style="text-align: center;padding-bottom:10px;">
+        <img src="static/images/logo.png" class="img-responsive" alt="Image">
+    </div>
+    <div class="login-block">
+        {% for message in messages %}
+        <div class="alert alert-dismissible fade show my-2" role="alert" style="background-color:bisque; color:black;">
+            <span class="text-white">{{message}}</span>
+        </div>
+        {% endfor %}
+        <form action="{% url 'login-form' %}" method="POST">
+            {% csrf_token %}
+            <h1>Login</h1>
+            <input type="text" value="" name="username" placeholder="Username" id="username" />
+            <input type="password" value="" name="password" placeholder="Password" id="password" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
